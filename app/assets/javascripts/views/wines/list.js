@@ -1,3 +1,23 @@
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'collections/wines',
+    'text!templates/wines/list.html'
+], function($, _, Backbone, WineCollection, wineListTemplate) {
+    var WineListView = Backbone.View.extend({
+        el: $("#sidebar"),
+
+        initialize: function() {
+            this.collection = new WineCollection();
+            this.collection.fetch();
+            var compiledTemplate = _.template(wineListTemplate, { wines: this.collection.models });
+            this.$el.html(compiledTemplate);
+        }
+    });
+});
+
+/*
 window.WineListView = Backbone.View.extend({
     tagName: 'ul',
 
@@ -12,3 +32,4 @@ window.WineListView = Backbone.View.extend({
         return this;
     }
 });
+*/

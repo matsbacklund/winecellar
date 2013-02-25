@@ -1,0 +1,5 @@
+<ul>
+    <% _.each(wines, function(wine){ %>
+    <li><a href='<%= wine.get("url") %>'><%= wine.get("name") %></a></li>
+    <% }); %>
+</ul>
